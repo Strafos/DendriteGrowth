@@ -1,35 +1,49 @@
+%Script to analyze dendrite growth in video with edge detection
+
 disp('Select video')
 filename = uigetfile;
-vidToImg(filename);
+Amp = str2double(filename(1));
+framesPerVid = 10;
 
+%[folder, captureFrame] = vidToImg(filename, Amp, framesPerVid);
 
+lastImg = imread([folder, '/', getImgName(1 + captureFrame*(framesPerVid - 1))]);
+image(lastImg)
+set(gca,'YDir','reverse');
+axis image
+title('Dendrite Over Time')
+hold on
 
+%Get edge data for each frame using sobelEdgeFinder.m
+disp('Finding edges')
+dataArr = zeros(framesPerVid, 1024);
+for i = 0:framesPerVid - 1
+    num = 1 + i * captureFrame;
+    imgName = getImgName(num);
+    fileLoc = [folder, '/', imgName];
+    dataArr(i+1,:) = sobelEdgeFinder(fileLoc);
+end
 
-
-function vidToImg(videoName)
-%Turns video into series of images for color analysis
-
-img_folder = strcat('images_', videoName);
-
-mkdir(img_folder) %Create images folder
-
-%Create video reader
-dendriteVideo = VideoReader(videoName);
-
-folder = strcat('./', img_folder);
-
-counter = 1;
-frame_per_minute = 1;
-
-
-while hasFrame(dendriteVideo)
-    img = readFrame(dendriteVideo);
-    if(rem(counter, 120) == 1)
-        filename = [sprintf('%03d',counter) '.jpg'];
-        imwrite(img,fullfile(folder, filename))    % Write out to a JPEG file (img1.jpg, img2.jpg, etc.)
+%Plot edges
+red = [1 0 0];
+white = [1 1 1];
+disp('Plotting edges')
+for i = 0:framesPerVid - 1
+    color = red * (i) / (framesPerVid - 1) + white * ...
+        (framesPerVid - i - 1) / (framesPerVid - 1);
+    disp(color)
+    for j = 1:1024
+            plot(dataArr(i+1, j), j, 'Marker', '.', 'Color', color);
     end
-    counter = counter+1;
 end
 
+%Returns name of image
+function name = getImgName(pic)
+if  pic < 10
+    name = ['00', int2str(pic), '.jpg'];
+elseif pic < 100
+    name = ['0', int2str(pic), '.jpg'];
+else 
+    name = [int2str(pic), '.jpg'];
 end
-
+end
