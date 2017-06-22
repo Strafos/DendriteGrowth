@@ -5,8 +5,9 @@ filename = uigetfile;
 Amp = str2double(filename(1));
 framesPerVid = 10;
 
-%[folder, captureFrame] = vidToImg(filename, Amp, framesPerVid);
+[folder, captureFrame] = vidToImg(filename, Amp, framesPerVid);
 
+%Plot the last image
 lastImg = imread([folder, '/', getImgName(1 + captureFrame*(framesPerVid - 1))]);
 image(lastImg)
 set(gca,'YDir','reverse');
