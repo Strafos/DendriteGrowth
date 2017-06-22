@@ -1,5 +1,3 @@
-"# DendriteGrowth" 
-
 dendrite.m is the main file which graphs the progression of dendrites with time using a sobel filter.
 
 sobelEdgeTuner.m can be used to tune variables for better edge detection. These variables can be entered into sobelEdgeFinder.m for better edge detection.
