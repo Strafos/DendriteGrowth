@@ -1,7 +1,15 @@
-dendrite.m is the main file which graphs the progression of dendrites with time using a sobel filter.
+"# DendriteGrowth" 
 
-sobelEdgeTuner.m can be used to tune variables for better edge detection. These variables can be entered into sobelEdgeFinder.m for better edge detection.
+## To use
+There are two separate programs analyze data.
+`GUI.m` is an interface that allows the user to manually tag dendrites and outputs a data set of those tags
 
-GUI.m and GUI.fig allow user to manually track dendrites by click. 
+`dendrite.m` takes a video input and selects 10 equally spaced frames. Then it applies several filters on the image and MATLAB's edge detection modules to locate and graph the edges and output the data.
+`dendrite.m` will require tuning to fit different data videos. To do so, use `vidToImg.m` to turn selected video into image frames. Then use `sobelEdgeTuner.m` to change variables on an individual frame until you are satisfied with the resulting edge. Then, enter these variables into `sobelEdgeFinder.m` which is called by the main function, `dendrite.m`
 
-vidToImg.m turns video into images of equally spaced out frames.
+## Results
+Dendrite detection on a specific frame:
+!(http://imgur.com/a/bM4D9)
+
+Dendrite growth over time:
+!(http://imgur.com/a/GomNt)
