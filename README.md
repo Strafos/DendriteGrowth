@@ -1,4 +1,4 @@
-"# DendriteGrowth" 
+"# DendridectionteGrowth" 
 
 ## To use
 There are two separate programs analyze data.
@@ -9,7 +9,7 @@ There are two separate programs analyze data.
 
 ## Results
 Dendrite detection on a specific frame:
-![Dendrite detection on one frame](http://www.imgur.com/a/bM4D9.png)
+![Dendrite detection on one frame](http://www.imgur.com/a/bM4D9)
 
 Dendrite growth over time:
-![Dendrite growth over time](http://imgur.com/a/GomNt.png)
+![Dendrite growth over time](http://imgur.com/a/GomNt)
