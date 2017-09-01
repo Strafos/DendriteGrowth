@@ -9,7 +9,7 @@ There are two separate programs analyze data.
 
 ## Results
 Dendrite detection on a specific frame:
-![Dendrite detection on one frame](http://imgur.com/a/bM4D9)
+![Dendrite detection on one frame](http://www.imgur.com/a/bM4D9.png)
 
 Dendrite growth over time:
-![Dendrite growth over time](http://imgur.com/a/GomNt)
+![Dendrite growth over time](http://imgur.com/a/GomNt.png)
